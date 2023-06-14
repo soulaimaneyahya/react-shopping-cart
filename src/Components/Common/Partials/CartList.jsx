@@ -11,7 +11,7 @@ const CartList = () => {
     const totalPrice = useSelector((state) => state.cart.totalPrice);
     const itemsList = useSelector((state) => state.cart.itemsList);
     const { currencyText } = useContext(CurrencyContext);
-    console.log(itemsList)
+    // console.log(itemsList)
 
     const dispatch = useDispatch();
 

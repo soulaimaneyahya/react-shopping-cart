@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import CurrencyProvider from "../../Contexts/CurrencyContext";
+import { SearchContext } from "../../Contexts/SearchContext";
 import { setLoginStatus } from "../../Store/Slices/authSlice";
 import Cart from "./Partials/Cart";
 import CartList from "./Partials/CartList";
@@ -9,6 +11,11 @@ const Nav = () => {
     const auth = useSelector((state) => state.auth);
     const history = useHistory();
     const dispatch = useDispatch();
+
+    let { search, setSearch } = useContext(SearchContext)
+    const handleSearch = (e) => {
+        setSearch(e.target.value.toLocaleLowerCase())
+    }
 
     const handleLogout = () => {
         dispatch(setLoginStatus(false))
@@ -42,6 +49,16 @@ const Nav = () => {
                         <ul className="navbar-nav">
                             {auth.isLogin ? (
                                 <>
+                                    <li className="nav-item">
+                                        <input
+                                            value={search}
+                                            onChange={(e) => handleSearch(e)}
+                                            className="form-control me-2"
+                                            type="search"
+                                            name="search"
+                                            placeholder="Search"
+                                            aria-label="Search" />
+                                    </li>
                                     <li className="nav-item">
                                         <a className="nav-link mx-md-3" role="button" onClick={handleLogout}>Logout</a>
                                     </li>

@@ -1,26 +1,7 @@
-import { useDispatch } from 'react-redux';
 import Product from './Product';
-import { addToCart } from '../../Store/Slices/cartSlice';
+import PropTypes from 'prop-types'
 
 function ProductsList({ products, setShowSuccessAlert }) {
-    const dispatch = useDispatch();
-
-    const handleAddToCart = (product) => {
-        dispatch(addToCart({
-            id: product.id,
-            name: product.name,
-            imgURL: product.imgURL,
-            price: product.price
-        }));
-
-        setShowSuccessAlert(true);
-
-        // Hide the success alert after 3 seconds
-        setTimeout(() => {
-            setShowSuccessAlert(false);
-        }, 3000);
-    };
-
     return (
         <>
             {products && products.length === 0 ? (
@@ -36,13 +17,18 @@ function ProductsList({ products, setShowSuccessAlert }) {
                             imgURL={product.imgURL}
                             price={product.price}
                             created_at={product.created_at}
-                            addToCart={() => handleAddToCart(product)}
+                            setShowSuccessAlert={setShowSuccessAlert}
                         />
                     ))}
                 </div>
             )}
         </>
     );
+}
+
+ProductsList.propTypes = {
+    products: PropTypes.array,
+    setShowSuccessAlert: PropTypes.func
 }
 
 export default ProductsList;
