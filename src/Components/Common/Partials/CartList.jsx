@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CurrencyContext } from "../../../Contexts/CurrencyContext";
-import { cartActions } from "../../../Store/Slices/cartSlice";
+import { emptyCart } from "../../../Store/Slices/cartSlice";
 import CartItem from "./CartItem";
 import './cartList.css'
 
@@ -15,8 +15,8 @@ const CartList = () => {
 
     const dispatch = useDispatch();
 
-    const emptyCart = () => {
-        dispatch(cartActions.emptyCart())
+    const handleEmptyCart = () => {
+        dispatch(emptyCart())
     }
 
     return (<>
@@ -58,8 +58,8 @@ const CartList = () => {
                     </div>
                     <div className="mt-2">
                         <Link to="/checkout" className="btn btn-sm btn-dark btn-block w-100 w-full">Shop Now</Link>
-                        <Link to="/" className="btn btn-sm btn-light btn-block w-100 w-full my-2" data-bs-dismiss="offcanvas" aria-label="Close">Continue Shopping</Link>
-                        <button className="btn btn-sm btn-danger btn-block w-100 w-full" onClick={emptyCart}>Empty Cart</button>
+                        <button className="btn btn-sm btn-danger btn-block w-100 w-full my-2" onClick={handleEmptyCart}>Empty Cart</button>
+                        <Link to="/" className="btn btn-sm btn-light btn-block w-100 w-full" data-bs-dismiss="offcanvas" aria-label="Close">Continue Shopping</Link>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { authActions } from "../../Store/Slices/authSlice";
+import { setLoginStatus } from "../../Store/Slices/authSlice";
 
 function Login() {
     const auth = useSelector(state => state.auth);
@@ -35,7 +35,7 @@ function Login() {
         setEmail('')
         setPassword('')
         setIsLoading(false)
-        dispatch(authActions.login())
+        dispatch(setLoginStatus(true))
         history.push('/')
     }
 

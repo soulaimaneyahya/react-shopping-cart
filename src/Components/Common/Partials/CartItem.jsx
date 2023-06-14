@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { CurrencyContext } from "../../../Contexts/CurrencyContext";
-import { cartActions } from "../../../Store/Slices/cartSlice";
+import { addToCart, removeFromCart } from "../../../Store/Slices/cartSlice";
 import { PropTypes } from 'prop-types'
 
 const CartItem = ({ id, name, imgURL, quantity, totalPrice }) => {
@@ -10,7 +10,7 @@ const CartItem = ({ id, name, imgURL, quantity, totalPrice }) => {
 
     const incrementCartItem = () => {
         dispatch(
-            cartActions.addToCart({
+            addToCart({
                 id,
                 name,
                 imgURL,
@@ -20,12 +20,12 @@ const CartItem = ({ id, name, imgURL, quantity, totalPrice }) => {
     };
 
     const decrementCartItems = () => {
-        dispatch(cartActions.removeFromCart(id));
+        dispatch(removeFromCart(id));
     };
 
     const removePrementelyFromCart = () => {
         for (let i = 0; i < quantity; i++) {
-            dispatch(cartActions.removeFromCart(id));
+            dispatch(removeFromCart(id));
         }
     }
 
@@ -33,7 +33,11 @@ const CartItem = ({ id, name, imgURL, quantity, totalPrice }) => {
         <section className="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
             <section className="d-flex justify-content-start align-items-start gap-3">
                 <aside>
-                    <img src={imgURL} alt={name} width={60} className="img-thumbnail rounded" />
+                    <img src={imgURL} alt={name} width={60} style={{ 
+                        width: '60px',
+                        height: '60px',
+                        objectFit: 'cover'
+                     }} className="rounded" />
                 </aside>
                 <article>
                     <header>

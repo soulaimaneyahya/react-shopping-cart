@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { authActions } from "../../Store/Slices/authSlice";
+import { addUser, setLoginStatus } from "../../Store/Slices/authSlice";
 
 function Register() {
     const auth = useSelector(state => state.auth);
@@ -36,8 +36,8 @@ function Register() {
 
         setIsLoading(true)
 
-        dispatch(authActions.addUser(JSON.stringify(user)))
-        dispatch(authActions.login())
+        dispatch(addUser(JSON.stringify(user)))
+        dispatch(setLoginStatus(true))
         setName('')
         setUsername('')
         setEmail('')

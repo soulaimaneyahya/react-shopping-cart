@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { PropTypes } from 'prop-types'
 
 export const CurrencyContext = createContext();
 
@@ -13,10 +12,5 @@ const CurrencyProvider = ({ children }) => {
         </CurrencyContext.Provider>
     );
 };
-
-CurrencyProvider.propTypes = {
-    // single child can be passed
-    children: PropTypes.element.isRequired
-}
 
 export default CurrencyProvider;
