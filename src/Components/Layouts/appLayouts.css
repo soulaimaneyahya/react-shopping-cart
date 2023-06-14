@@ -1,0 +1,31 @@
+html,
+body {
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-container {
+    flex: 1;
+}
+
+/* nav */
+.nav-link {
+    color: #dddddd;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    color: white !important;
+}
+
+/* buttons */
+.btn-close {
+    height: 0px !important;
+}
